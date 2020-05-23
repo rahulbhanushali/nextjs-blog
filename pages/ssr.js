@@ -12,7 +12,7 @@ import fetcher from '../utils/fetcher'
 
 export default function Post({ ssrData }) {
     const { data } = useSWR("/api/hello", fetcher);
-
+    
     if (!data) return <h1>Loading...</h1>;
 
     return (
@@ -54,7 +54,7 @@ export default function Post({ ssrData }) {
 }
 
 // This gets called on every request
-async function getServerSideProps() {
+export async function getServerSideProps() {
     // Fetch data from external API
     const res = await fetch(`https://worldtimeapi.org/api/timezone/Asia/Kolkata`)
     const ssrData = JSON.stringify(await res.json())
